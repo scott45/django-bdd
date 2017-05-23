@@ -3,27 +3,29 @@ Feature: System interaction
   I want to login
   So i can see the homepage
 
- Background:
-   Given There are no users in the system
-   And No home page has been made yet
+Background: There are to-do's and users in the system
+    Given there are a number of to-do's:
+        |    Docker           |
+        |    Django             |
+        |    Testing            |
+        |    Public Speaking    |
+        |    DevOps             |
+        |    PHP                |
 
- Scenario: Get username by name
-    Given I am not logged in as a user
-    When I type in my name
-    Then It is recognized
+    And there are many users, each with different interests:
+        |    name           |   interests                  |
+        |    scotty         |   Django, Testing, Docker    |
+        |    david          |   Django, Public Speaking    |
+        |    timothy        |   Testing, Devops            |
+        |    onyango        |   Public Speaking, DevOps    |
 
-Scenario: Get username by email
-    Given I am not logged in as a user
-    When I type in my email
-    Then It is recognized
-
- Scenario: No name and email
-    Given I am not logged in as a user
-    When I type in my name and email
-    Then I am not authenticated
-
-Scenario: No html
+Scenario Outline: Filter users
     Given I am a logged in user
-    When I navigate to templates folder
-    Then I don't find the ftml file
+    When I filter the list of users by <filter>
+    Then I see <num> users
 
+    Examples:
+        |    filter             |    num    |
+        |    Django             |    2      |
+        |    Django, Testing    |    3      |
+        |    PHP                |    0      |
