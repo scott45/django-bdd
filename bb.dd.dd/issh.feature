@@ -1,11 +1,11 @@
-Feature: System interaction
-  As a standard user
-  I want to login
-  So i can see the homepage
+Feature: Filter users by interest
+As a standard user
+I want to filter users by their listed interests
+So I can find users who have similar interests to my own
 
 Background: There are to-do's and users in the system
     Given there are a number of to-do's:
-        |    Docker           |
+        |    Docker             |
         |    Django             |
         |    Testing            |
         |    Public Speaking    |
